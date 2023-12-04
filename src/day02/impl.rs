@@ -19,9 +19,10 @@ impl crate::Day for Solution {
                     let count_color = color.split(' ');
                     let count_color: Vec<_> = count_color.collect();
 
-                    let count = i32::from_str_radix(count_color[0], 10);
-                    let count =
-                        count.unwrap_or_else(|_| panic!("[count] {} should be a number", count_color[0]));
+                    let count = count_color[0].parse::<i32>();
+                    let count = count.unwrap_or_else(|_| {
+                        panic!("[count] {} should be a number", count_color[0])
+                    });
 
                     let color = count_color[1];
 
@@ -40,7 +41,7 @@ impl crate::Day for Solution {
             let id = id.collect::<Vec<_>>()[0];
             let id = id.split(char::is_whitespace);
             let id = id.collect::<Vec<_>>()[1];
-            let id = i32::from_str_radix(id, 10);
+            let id = id.parse::<i32>();
             let id = id.expect("[id] should be a number");
 
             total += id;
@@ -63,9 +64,10 @@ impl crate::Day for Solution {
                     let count_color = color.split(' ');
                     let count_color: Vec<_> = count_color.collect();
 
-                    let count = i32::from_str_radix(count_color[0], 10);
-                    let count =
-                        count.unwrap_or_else(|_| panic!("[count] {} should be a number", count_color[0]));
+                    let count = count_color[0].parse::<i32>();
+                    let count = count.unwrap_or_else(|_| {
+                        panic!("[count] {} should be a number", count_color[0])
+                    });
 
                     let color = count_color[1];
                     let val = color_requirements.get_mut(color).expect("Unknown color?");
@@ -85,6 +87,7 @@ impl crate::Day for Solution {
 }
 
 mod test {
+    #[allow(dead_code)]
     const INPUT: &str = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\nGame 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\nGame 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\nGame 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\nGame 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
 
     #[test]

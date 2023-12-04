@@ -3,13 +3,14 @@ use std::{fs, io};
 
 mod days;
 
+type SolutionFnT = fn(&str) -> String;
 trait Day {
     fn first_star(input: &str) -> String;
     fn second_star(input: &str) -> String;
 }
 
 fn main() {
-    let days: [(&str, (fn(&str) -> String, fn(&str) -> String)); 3] = [
+    let days: [(&str, (SolutionFnT, SolutionFnT)); 3] = [
         (
             "day01",
             (
@@ -40,10 +41,9 @@ fn main() {
         println!("[{day_name}] First answer: {first} | Second answer: {second}");
     }
 }
-
 fn run(
     dir: &str,
-    solutions: (fn(&str) -> String, fn(&str) -> String),
+    solutions: (SolutionFnT, SolutionFnT),
 ) -> io::Result<(String, String)> {
     let mut input_file = std::env::current_exe()?;
     input_file.pop();

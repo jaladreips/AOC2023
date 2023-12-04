@@ -7,12 +7,9 @@ impl crate::Day for Solution {
             let mut first = 0xFFFFFFFF;
             let mut last = 0xFFFFFFFF;
             for char in line.chars() {
-                match char.to_digit(10) {
-                    Some(d) => {
-                        first = if first == 0xFFFFFFFF { d } else { first };
-                        last = d;
-                    }
-                    None => {}
+                if let Some(d) = char.to_digit(10) {
+                    first = if first == 0xFFFFFFFF { d } else { first };
+                    last = d;
                 }
             }
 

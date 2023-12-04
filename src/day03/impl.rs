@@ -158,7 +158,7 @@ impl crate::Day for Solution {
                 for number in &interesting_numbers {
                     let min_index = number.0 - 1;
                     let max_index = number.0 + number.1.len() as i32;
-    
+
                     if gear >= min_index && gear <= max_index {
                         specific_numbers.push(number.1.parse::<i32>().expect("Should be a number"));
                     }
@@ -167,9 +167,7 @@ impl crate::Day for Solution {
                 if specific_numbers.len() == 2 {
                     total += specific_numbers[0] * specific_numbers[1];
                 }
-
             }
-
         }
 
         total.to_string()
@@ -177,6 +175,7 @@ impl crate::Day for Solution {
 }
 
 mod test {
+    #[allow(dead_code)]
     const INPUT: &str = "467..114..\n...*......\n..35..633.\n......#...\n617*......\n.....+.58.\n..592.....\n......755.\n...$.*....\n.664.598..";
     #[test]
     fn first_star() {
