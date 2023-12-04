@@ -1,4 +1,4 @@
-use std::path::{Path, PathBuf};
+
 use std::{fs, io};
 
 mod days;
@@ -54,9 +54,7 @@ fn run(
     input_file.push("input.txt");
 
     let input = fs::read_to_string(&input_file);
-    let input = input.expect(&format!(
-        "Failed to read from {}",
-        input_file.to_str().unwrap()
-    ));
+    let input = input.unwrap_or_else(|_| panic!("Failed to read from {}",
+        input_file.to_str().unwrap()));
     Ok((solutions.0(&input), solutions.1(&input)))
 }

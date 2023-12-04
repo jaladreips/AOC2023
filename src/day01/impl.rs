@@ -3,7 +3,7 @@ pub struct Solution;
 impl crate::Day for Solution {
     fn first_star(input: &str) -> String {
         let mut total = 0;
-        for line in input.split("\n") {
+        for line in input.split('\n') {
             let mut first = 0xFFFFFFFF;
             let mut last = 0xFFFFFFFF;
             for char in line.chars() {
@@ -48,14 +48,14 @@ impl crate::Day for Solution {
             ("nine", 9),
         ]);
 
-        for line in input.split("\n") {
+        for line in input.split('\n') {
             let mut first = None;
             let mut last = None;
 
             for k in str2val.keys() {
                 let mut digits: Vec<_> = line.match_indices(k).collect();
 
-                if digits.len() == 0 {
+                if digits.is_empty() {
                     continue;
                 }
 

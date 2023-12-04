@@ -15,8 +15,8 @@ impl crate::Day for Solution {
         symbols.push(Vec::new());
 
         for c in input.chars() {
-            if c.is_digit(10) {
-                if &number.1 == "" {
+            if c.is_ascii_digit() {
+                if number.1.is_empty() {
                     number.0 = v_index;
                 }
 
@@ -24,14 +24,14 @@ impl crate::Day for Solution {
 
                 v_index += 1;
             } else if c == '.' {
-                if &number.1 != "" {
+                if !number.1.is_empty() {
                     numbers[0].push(number.clone());
                 }
                 number.1 = "".to_string();
 
                 v_index += 1;
             } else if c.is_whitespace() {
-                if &number.1 != "" {
+                if !number.1.is_empty() {
                     numbers[0].push(number.clone());
                 }
                 number.1 = "".to_string();
@@ -41,7 +41,7 @@ impl crate::Day for Solution {
 
                 v_index = 0;
             } else {
-                if &number.1 != "" {
+                if !number.1.is_empty() {
                     numbers[0].push(number.clone());
                 }
                 number.1 = "".to_string();
@@ -52,7 +52,7 @@ impl crate::Day for Solution {
             }
         }
 
-        if &number.1 != "" {
+        if !number.1.is_empty() {
             numbers[0].push(number.clone());
         }
 
@@ -98,8 +98,8 @@ impl crate::Day for Solution {
         gears.push(Vec::new());
 
         for c in input.chars() {
-            if c.is_digit(10) {
-                if &number.1 == "" {
+            if c.is_ascii_digit() {
+                if number.1.is_empty() {
                     number.0 = v_index;
                 }
 
@@ -107,14 +107,14 @@ impl crate::Day for Solution {
 
                 v_index += 1;
             } else if c == '.' {
-                if &number.1 != "" {
+                if !number.1.is_empty() {
                     numbers[0].push(number.clone());
                 }
                 number.1 = "".to_string();
 
                 v_index += 1;
             } else if c.is_whitespace() {
-                if &number.1 != "" {
+                if !number.1.is_empty() {
                     numbers[0].push(number.clone());
                 }
                 number.1 = "".to_string();
@@ -124,12 +124,12 @@ impl crate::Day for Solution {
 
                 v_index = 0;
             } else {
-                if &number.1 != "" {
+                if !number.1.is_empty() {
                     numbers[0].push(number.clone());
                 }
                 number.1 = "".to_string();
 
-                if (c == '*') {
+                if c == '*' {
                     gears[0].push(v_index);
                 }
 
@@ -137,7 +137,7 @@ impl crate::Day for Solution {
             }
         }
 
-        if &number.1 != "" {
+        if !number.1.is_empty() {
             numbers[0].push(number.clone());
         }
 

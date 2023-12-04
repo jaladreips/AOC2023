@@ -8,7 +8,7 @@ impl crate::Day for Solution {
 
         let mut total = 0;
 
-        for line in input.split("\n") {
+        for line in input.split('\n') {
             let mut is_ok = true;
 
             let all_cubes = line.split(": ");
@@ -16,12 +16,12 @@ impl crate::Day for Solution {
 
             for cubes in all_cubes.split("; ") {
                 for color in cubes.split(", ") {
-                    let count_color = color.split(" ");
+                    let count_color = color.split(' ');
                     let count_color: Vec<_> = count_color.collect();
 
                     let count = i32::from_str_radix(count_color[0], 10);
                     let count =
-                        count.expect(&format!("[count] {} should be a number", count_color[0]));
+                        count.unwrap_or_else(|_| panic!("[count] {} should be a number", count_color[0]));
 
                     let color = count_color[1];
 
@@ -36,7 +36,7 @@ impl crate::Day for Solution {
                 continue;
             }
 
-            let id = line.split(":");
+            let id = line.split(':');
             let id = id.collect::<Vec<_>>()[0];
             let id = id.split(char::is_whitespace);
             let id = id.collect::<Vec<_>>()[1];
@@ -52,7 +52,7 @@ impl crate::Day for Solution {
     fn second_star(input: &str) -> String {
         let mut total = 0;
 
-        for line in input.split("\n") {
+        for line in input.split('\n') {
             let mut color_requirements = HashMap::from([("red", 0), ("green", 0), ("blue", 0)]);
 
             let all_cubes = line.split(": ");
@@ -60,12 +60,12 @@ impl crate::Day for Solution {
 
             for cubes in all_cubes.split("; ") {
                 for color in cubes.split(", ") {
-                    let count_color = color.split(" ");
+                    let count_color = color.split(' ');
                     let count_color: Vec<_> = count_color.collect();
 
                     let count = i32::from_str_radix(count_color[0], 10);
                     let count =
-                        count.expect(&format!("[count] {} should be a number", count_color[0]));
+                        count.unwrap_or_else(|_| panic!("[count] {} should be a number", count_color[0]));
 
                     let color = count_color[1];
                     let val = color_requirements.get_mut(color).expect("Unknown color?");
