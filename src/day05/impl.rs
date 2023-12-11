@@ -130,19 +130,20 @@ impl crate::Day for Solution {
 
         let ops = Arc::new(ops);
 
-        let mut best_location = u64::MAX;
-
         let mut handles = Vec::new();
+        const STEP: usize = 1 << 16;
 
         let arc_proposed_locations = Arc::new(Mutex::new(Vec::new()));
         for seed_range in seed_ranges {
-            let step = 1 << 16;
-
-            for seed_subrange in (seed_range.0..seed_range.0 + seed_range.1).step_by(step) {
+            for seed_subrange in (seed_range.0..seed_range.0 + seed_range.1).step_by(STEP) {
                 let tmp_ops = ops.clone();
                 let tmp_proposed_locations = arc_proposed_locations.clone();
                 handles.push(thread::spawn(move || {
-                    for seed in seed_subrange..u64::min(seed_subrange + step as u64, seed_range.0 + seed_range.1) {
+                    let mut best_location = u64::MAX;
+
+                    for seed in seed_subrange
+                        ..u64::min(seed_subrange + STEP as u64, seed_range.0 + seed_range.1)
+                    {
                         let mut tmp = seed;
 
                         for op in &(*tmp_ops) {
@@ -159,17 +160,16 @@ impl crate::Day for Solution {
                         } else {
                             best_location
                         };
-                        tmp_proposed_locations.lock().unwrap().push(best_location);
                     }
+                    tmp_proposed_locations.lock().unwrap().push(best_location);
                 }));
             }
         }
 
-        
         for handle in handles {
             let _ = handle.join();
         }
-        
+
         let mut proposed_locations = Arc::into_inner(arc_proposed_locations)
             .expect("WTF")
             .into_inner()
@@ -177,8 +177,7 @@ impl crate::Day for Solution {
 
         proposed_locations.sort();
 
-        best_location = *proposed_locations.first().expect("WTF");
-        best_location.to_string()
+        (*proposed_locations.first().expect("WTF")).to_string()
     }
 }
 
