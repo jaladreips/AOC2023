@@ -11,12 +11,17 @@ trait Day {
 fn main() {
     let days = days();
 
-    for (day_name, day_impl) in days {
-        let Ok((first, second)) = run(day_name, day_impl) else {
+    for (day_name, day_impl) in if std::env::args().any(|x| x == "--last-only") {
+        days[(days.len() - 1)..].iter()
+    } else {
+        days.iter()
+    } {
+        let start = std::time::Instant::now();
+        let Ok((first, second)) = run(day_name, *day_impl) else {
             unimplemented!()
         };
 
-        println!("[{day_name}] First answer: {first} | Second answer: {second}");
+        println!("[{day_name}] First answer: {first} | Second answer: {second} | Time elapsed: {}s", start.elapsed().as_secs_f64());
     }
 }
 
