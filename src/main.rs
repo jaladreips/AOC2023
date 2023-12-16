@@ -46,7 +46,7 @@ fn run(dir: &str, solutions: (SolutionFnT, SolutionFnT)) -> io::Result<(String, 
     ))
 }
 
-fn days() -> [(&'static str, (SolutionFnT, SolutionFnT)); 10] {
+fn days() -> [(&'static str, (SolutionFnT, SolutionFnT)); 11] {
     [
         (
             "day01",
@@ -116,6 +116,13 @@ fn days() -> [(&'static str, (SolutionFnT, SolutionFnT)); 10] {
             (
                 days::day10::Solution::first_star,
                 days::day10::Solution::second_star,
+            ),
+        ),
+        (
+            "day11",
+            (
+                days::day11::Solution::first_star,
+                days::day11::Solution::second_star,
             ),
         ),
     ]
