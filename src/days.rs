@@ -12,8 +12,9 @@ use crate::{SolutionFnT, Day};
 #[path = "day10/impl.rs"] pub mod day10;
 #[path = "day11/impl.rs"] pub mod day11;
 #[path = "day12/impl.rs"] pub mod day12;
+#[path = "day13/impl.rs"] pub mod day13;
 
-pub(crate) fn days() -> [(&'static str, (SolutionFnT, SolutionFnT)); 12] {
+pub(crate) fn days() -> [(&'static str, (SolutionFnT, SolutionFnT)); 13] {
     [
         (
             "day01",
@@ -97,6 +98,13 @@ pub(crate) fn days() -> [(&'static str, (SolutionFnT, SolutionFnT)); 12] {
             (
                 day12::Solution::first_star,
                 day12::Solution::second_star,
+            ),
+        ),
+        (
+            "day13",
+            (
+                day13::Solution::first_star,
+                day13::Solution::second_star,
             ),
         ),
     ]
