@@ -1,6 +1,5 @@
 use std::{
     collections::HashMap,
-    sync::{Arc, Mutex},
 };
 
 pub struct Solution;
@@ -55,62 +54,6 @@ impl Group {
         } else {
             [[self].to_vec()].to_vec()
         }
-    }
-
-    fn full_resolve(self) -> Vec<Vec<Self>> {
-        let mut gathered_groups = vec![vec![self]];
-        loop {
-            let mut new_gathered_groups = vec![vec![]];
-            let mut all_resolved = true;
-            while let Some(mut groups) = gathered_groups.pop() {
-                if groups.iter().all(Group::is_resolved) {
-                    if !groups.is_empty() {
-                        new_gathered_groups.push(groups)
-                    }
-                } else {
-                    all_resolved = false;
-                    let mut new_groups_vec = Vec::new();
-                    groups.reverse();
-                    while let Some(group) = groups.pop() {
-                        if group.is_resolved() {
-                            new_groups_vec.push(group);
-                        } else {
-                            groups.reverse();
-                            new_gathered_groups.extend(
-                                group
-                                    .resolve()
-                                    .into_iter()
-                                    .map(|g| {
-                                        let mut new_groups_vec = new_groups_vec.clone();
-                                        new_groups_vec.extend(g);
-                                        new_groups_vec.extend(groups.clone());
-                                        new_groups_vec
-                                    })
-                                    .collect::<Vec<_>>(),
-                            );
-                            break;
-                        }
-                    }
-                }
-            }
-
-            gathered_groups = new_gathered_groups;
-
-            // let mut new_gathered_groups = vec![vec![]];
-            // for groups in gathered_groups {
-            //     if !new_gathered_groups.contains(&groups) {
-            //         new_gathered_groups.push(groups);
-            //     }
-            // }
-
-            // gathered_groups = new_gathered_groups;
-
-            if all_resolved {
-                break;
-            }
-        }
-
-        gathered_groups
     }
 }
 
