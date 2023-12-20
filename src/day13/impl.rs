@@ -220,6 +220,6 @@ mod test {
     #[test]
     fn second_star() {
         use super::*;
-        let test_fn = <Solution as crate::Day>::second_star;
+        let _test_fn = <Solution as crate::Day>::second_star;
     }
 }
