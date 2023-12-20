@@ -1,4 +1,5 @@
 #![feature(map_many_mut)]
+#![feature(get_many_mut)]
 
 use std::{fs, io};
 
