@@ -1,7 +1,4 @@
-use std::{
-    collections::{HashMap, HashSet},
-    slice::SliceIndex,
-};
+use std::collections::{HashMap, HashSet};
 
 pub struct Solution;
 
@@ -190,7 +187,7 @@ impl crate::Day for Solution {
                 continue;
             }
 
-            beams_history.insert(beam.clone());
+            beams_history.insert(beam);
 
             energized_fields.insert(beam.pos);
 
@@ -244,7 +241,7 @@ impl crate::Day for Solution {
                     continue;
                 }
                 
-                beams_history.insert(beam.clone());
+                beams_history.insert(beam);
                 
                 energized_fields.insert(beam.pos);
                 
