@@ -34,6 +34,7 @@ fn run(dir: &str, solutions: (SolutionFnT, SolutionFnT)) -> io::Result<(String, 
     input_file.pop();
     input_file.pop();
     input_file.push("src");
+    input_file.push("days");
     input_file.push(dir);
     input_file.push("input.txt");
 

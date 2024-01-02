@@ -1,4 +1,4 @@
-#[path = "../helpers.rs"]
+#[path = "../../helpers/mod.rs"]
 mod helpers;
 
 use std::{cell::RefCell, collections::HashSet, rc::Rc};
