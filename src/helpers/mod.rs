@@ -1,7 +1,7 @@
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash, Ord, PartialOrd)]
 pub struct Point {
-    x: i64,
-    y: i64,
+    pub x: i64,
+    pub y: i64,
 }
 
 impl Point {
@@ -53,6 +53,11 @@ impl std::ops::Mul<i64> for Point {
     }
 }
 
+impl std::ops::AddAssign for Point {
+    fn add_assign(&mut self, rhs: Self) {
+        *self = *self + rhs;
+    }
+}
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum Dir {
@@ -79,6 +84,10 @@ impl Dir {
             Dir::Left => Dir::Right,
             Dir::Right => Dir::Left,
         }
+    }
+
+    pub fn all_dirs() -> [Self; 4] {
+        [Dir::Left, Dir::Right, Dir::Up, Dir::Down]
     }
 }
 

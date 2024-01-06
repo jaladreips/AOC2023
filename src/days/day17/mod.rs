@@ -1,9 +1,6 @@
-#[path = "../../helpers/mod.rs"]
-mod helpers;
-
 use std::{cell::RefCell, collections::HashSet, rc::Rc};
 
-use helpers::*;
+use super::helpers::*;
 pub struct Solution;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
